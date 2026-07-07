@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redmine Project Guard</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <h1>Redmine Project Guard</h1>
+        <button id="add-rule" type="button">ルールを追加</button>
+      </header>
+
+      <section class="host-settings" aria-label="Redmineホスト設定">
+        <label>
+          Redmine URL
+          <input id="redmine-url" type="url" placeholder="https://redmine.example.com/">
+        </label>
+      </section>
+
+      <section id="rules" class="rules" aria-label="プロジェクト判定ルール"></section>
+
+      <footer class="actions">
+        <button id="save" type="button">保存</button>
+        <span id="status" role="status"></span>
+      </footer>
+    </main>
+
+    <template id="rule-template">
+      <article class="rule">
+        <div class="rule-header">
+          <label class="enabled">
+            <input class="rule-enabled" type="checkbox">
+            有効
+          </label>
+          <button class="remove-rule" type="button">削除</button>
+        </div>
+
+        <label>
+          警告対象プロジェクト名
+          <input class="rule-pattern" type="text" placeholder="Example Project">
+        </label>
+
+        <label>
+          判定方法
+          <select class="rule-match-type">
+            <option value="contains">含む</option>
+            <option value="exact">完全一致</option>
+            <option value="wildcard">ワイルドカード</option>
+          </select>
+        </label>
+
+        <label>
+          警告メッセージ
+          <input class="rule-message" type="text" placeholder="警告対象のプロジェクトを開いています">
+        </label>
+
+        <label>
+          警告バーの位置
+          <select class="rule-banner-position">
+            <option value="both">上部と下部</option>
+            <option value="top">上部のみ</option>
+            <option value="bottom">下部のみ</option>
+          </select>
+        </label>
+
+        <div class="colors">
+          <label>
+            警告色
+            <input class="rule-banner-color" type="color">
+          </label>
+          <label>
+            文字色
+            <input class="rule-text-color" type="color">
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <script src="shared.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
